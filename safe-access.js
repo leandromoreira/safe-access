@@ -8,7 +8,7 @@
   }
 }(this, function() {
 
-  return function access(obj, accessStr) {
+  return function access(obj, accessStr, defaultReturn) {
     // auto-curry here
     if (isUndefined(accessStr)) {
       return access.bind(null, obj);
@@ -27,7 +27,7 @@
 
     if (isUndefined(obj) || isNull(obj) ||
         (isTokenFunctionCall(currentToken) && !isFunction(obj))) {
-      return undefined;
+      return defaultReturn;
     }
 
     if (isTokenFunctionCall(currentToken)) {

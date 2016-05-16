@@ -40,8 +40,9 @@
           fnArgs.slice(1));
 
     } else if (isTokenArrayAccess(currentToken)) {
-
-      return helper(obj[parseInt(currentToken.substr(1), 10)],
+      var index = parseInt(currentToken.substr(1), 10)
+      index = index === -1 ? (obj.length - 1) : index
+      return helper(obj[index],
           tokens.slice(1),
           // lookahead two tokens for function calls
           isTokenFunctionCall(tokens[1]) ? obj : ctx,
